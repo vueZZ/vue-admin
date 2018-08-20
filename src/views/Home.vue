@@ -1,7 +1,12 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <!-- <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <div v-for="item in lists" :key="item.id">
+      <span>{{ item.name }}</span>
+      <span>{{ item.id }}</span>
+      <img :src="item.img" alt="">
+    </div>
   </div>
 </template>
 
@@ -14,10 +19,18 @@ export default {
   components: {
     HelloWorld
   },
+  data () {
+    return {
+      lists: []
+    }
+  },
   created () {
     console.log(process.env)
-    console.log(process.env.hasOwnProperty('BASE_URL'))
-    console.log(process)
+    this.$api('goods.lists').then(data => {
+      console.log('返回数据')
+      console.log(data)
+      this.lists = data
+    })
   }
 }
 </script>

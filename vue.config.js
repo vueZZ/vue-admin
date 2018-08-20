@@ -9,11 +9,22 @@ module.exports = {
       }
     }
   },
-  configureWebpack: config => {
-    if (process.env.NODE_ENV === 'production') {
-      // 为生产环境修改配置...
-    } else {
-      // 为开发环境修改配置...
+  devServer: {
+    open: false,
+    // host: 'seller.aizhuanshangcheng.com',
+    port: 8080,
+    https: false,
+    hotOnly: true,
+    hot: true,
+    inline: false,
+    // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
+    // proxy: null, // string | Object
+    proxy: {
+      '/api': {
+        target: 'http://yapi.demo.qunar.com/mock/16616/admin',
+        pathRewrite: {'^/api' : ''},
+        changeOrigin: true
+      }
     }
   }
 }
