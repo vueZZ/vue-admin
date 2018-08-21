@@ -1,1 +1,25 @@
 @import './element-ui.scss';
+@import './styles.scss';
+
+html{
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-size: 14px;
+  color: $color;
+  background: #fff;
+}
+[v-cloak] {
+  display: none;
+}
+
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+// /* 去除input=number的箭头 */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
