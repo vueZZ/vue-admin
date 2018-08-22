@@ -38,22 +38,32 @@
       </el-table-column>
     </el-table>
 
+    <div class="table-pagination">
+      <pagination :pageNo.sync="query.pageNo" :pageSize.sync="query.pageSize" :total="total" @doQuery="doQuery"></pagination>
+    </div>
+
     <goodsDialog ref="goodsDialog" @refresh="doQuery"></goodsDialog>
   </div>
 </template>
 
 <script>
 import goodsDialog from '../components/goodsDialog.vue'
+import tableConfig from '@/lib/mixins/table'
 export default {
+  mixins: [tableConfig],
   components: {
     goodsDialog
   },
   data () {
     return {
-      query: {},
+      query: {
+        pageNo: 1,
+        pageSize: 5
+      },
       tableData: [],
       tableLoading: false,
-      tableText: '请点击查询'
+      tableText: '请点击查询',
+      total: 0
     }
   },
   created () {
@@ -70,7 +80,7 @@ export default {
       this.tableLoading = true
       this.getData().catch(e => {
         this.tableData = []
-        this.tableText = '查询出错'
+        this.tableText = '查询出错，请再次查询'
       }).finally(() => {
         this.tableLoading = false
       })
@@ -81,6 +91,7 @@ export default {
         this.tableText = '查无数据'
       }
       this.tableData = data
+      this.total = this.tableData.length
     },
     handleAdd () {
       this.$refs.goodsDialog.open()
@@ -89,7 +100,22 @@ export default {
       this.$refs.goodsDialog.open(row)
     },
     handleDelete (row) {
-      // this.$refs.goodsDialog.open()
+      this.$confirm('此操作将删除该商品, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.delete().catch(e => {
+          this.$message.error(e)
+        })
+      })
+    },
+    async delete (row) {
+      let params = {
+        ...row
+      }
+      await this.$api('good.delete', params)
+      this.$message.success('删除成功！')
     }
   }
 }
@@ -115,5 +141,12 @@ export default {
   margin-top: 15px;
   margin-bottom: 20px;
   background-color: #f8f8f8;
+}
+.table{
+  &-pagination{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row-reverse;
+  }
 }
 </style>

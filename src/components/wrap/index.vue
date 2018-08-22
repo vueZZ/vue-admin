@@ -29,9 +29,7 @@
     margin: 10px;
     padding: 15px;
     min-width: 750px;
-    min-height: 500px;
     background: #fff;
-    transition: all 5s;
   }
   &-help{
     position: absolute;
