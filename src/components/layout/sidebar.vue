@@ -33,9 +33,11 @@ export default {
 
 <style lang="scss">
   .web-sidebar {
-    position: fixed;
+    position: fixed!important;
+    top: 0;
+    bottom: 0;
     left: 0;
-    height: 100vh;
+    right: 0;
     width: 90px;
     box-sizing: border-box;
     .iconfont {

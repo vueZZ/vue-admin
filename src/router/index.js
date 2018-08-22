@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import goods from './goods'
+import settings from './settings'
 
 Vue.use(Router)
 
@@ -11,8 +12,15 @@ export default new Router({
     {
       path: '/',
       component: require('@/components/layout/index.vue').default,
-      children:[
-        goods
+      redirect: '/home',
+      children: [
+        {
+          path: '/home',
+          name: '首页',
+          component: require('@/views/home/index.vue').default
+        },
+        goods,
+        settings
       ]
     }
   ]

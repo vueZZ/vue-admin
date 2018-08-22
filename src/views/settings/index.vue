@@ -1,7 +1,7 @@
 <template>
   <div>
     <wrap>
-      <span>商品列表</span>
+      <span>设置</span>
     </wrap>
   </div>
 </template>

@@ -5,7 +5,6 @@ const api = {
       return res.data
     },
     cehckResult: function (res) {
-      console.log(res.data)
       if (res.data.success === true) {
         if (res.data.data) {
           return res.data.data
@@ -14,7 +13,7 @@ const api = {
           throw msg
         }
       } else {
-        let msg = `错误：${res.data.success},${res.data.msg}`
+        let msg = `错误：${res.data.msg}`
         throw msg
       }
     }
@@ -22,7 +21,15 @@ const api = {
   // ——————api配置——————
   // goods:
   // 获取商品列表
-  'goods.lists': { url: '/goods/lists', type: 'get', check: 'cehckResult' }
+  'goods.lists': { url: '/goods/lists', type: 'get', check: 'cehckResult' },
+  // 获取商品详情
+  'goods.details': { url: '/goods/lists', type: 'get', check: 'cehckResult' },
+  // 商品添加
+  'good.add': { url: '/goods/add', type: 'post', check: 'cehckResult' },
+  // 商品修改
+  'good.edit': { url: '/goods/edit', type: 'post', check: 'cehckResult' },
+  // 商品删除
+  'good.delete': { url: '/goods/delete', type: 'post', check: 'cehckResult' }
 }
 
 export default api

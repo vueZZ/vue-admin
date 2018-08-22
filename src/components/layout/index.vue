@@ -1,7 +1,11 @@
 <template>
   <div class="web">
     <sidebar></sidebar>
-    <router-view class="web-content"></router-view>
+    <!-- TODO:路由器切换动画 -->
+    <keep-alive>
+        <router-view v-if="$route.meta.keepAlive" :key="$route.path" class="web-container"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive" :key="$route.path" class="web-container"></router-view>
   </div>
 </template>
 
@@ -16,26 +20,9 @@ export default {
 
 <style lang="scss" scoped>
 .web{
-  // $backgroud: #444444;
-  &-content{
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    padding-left: 160px;
-    padding-top: 50px;
+  &-container{
+    margin-left: 90px;
     box-sizing: border-box;
-  }
-  &-left{
-    position: fixed;
-    left: 0;
-    width: 160px;
-    height: 100vh;
-    padding-top: 73px;
-  }
-  &-right{
-    flex: 1;
   }
 }
 </style>
