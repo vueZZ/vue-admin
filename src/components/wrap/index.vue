@@ -8,10 +8,38 @@
       </div>
     </div>
     <div class="wrap-container">
-      <router-view class="web-container"></router-view>
+      <div v-if="!netWork">
+        <h2>断网了</h2>
+        <el-button @click="refresh">刷新</el-button>
+      </div>
+      <router-view v-else class="web-container"></router-view>
     </div>
   </section>
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+export default {
+  computed: {
+    ...mapGetters([
+      'netWork'
+    ])
+  },
+  methods: {
+    refresh () {
+      if (navigator.onLine) {
+        this.$store.dispatch('changeNetwork', true)
+        this.$router.replace('/other/refresh')
+      } else {
+        this.$message.error({
+          info: '错误',
+          message: '未连接到互联网'
+        })
+      }
+    }
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .wrap{

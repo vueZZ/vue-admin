@@ -4,6 +4,13 @@
 * 技术：vue, element-ui, axios, sass
 * 兼容：现代浏览器（因为大量使用flex）
 
+## 功能
+```
+- 登录注册
+  -登录注册
+```
+
+
 ## Build Setup
 ``` bash
 # install dependencies

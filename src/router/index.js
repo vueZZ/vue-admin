@@ -22,6 +22,11 @@ export default new Router({
         goods,
         settings
       ]
+    },
+    {
+      path: '/other/refresh',
+      name: '刷新',
+      component: require('@/views/other/refresh/index.vue').default
     }
   ]
 })

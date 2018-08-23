@@ -67,9 +67,11 @@ export default {
     }
   },
   created () {
+    console.log('created')
     this.doQuery()
   },
   activated () {
+    console.log(this.$route.params)
     if (this.$route.params.refresh) {
       console.log('refresh')
       this.doQuery()

@@ -26,7 +26,7 @@ export default function (methods, data) {
       }
     })
   } else {
-    let msg = '无此url'
+    let msg = `配置错误：无此url或url配置错误${url}`
     throw msg
   }
 }
