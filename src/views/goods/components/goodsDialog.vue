@@ -85,11 +85,11 @@ export default {
       }
     },
     async handleAdd (params) {
-      await this.$api('good.add', params)
+      await this.$api('goods.add', params)
       this.$message.success('添加成功')
     },
     async handleEdit (params) {
-      await this.$api('good.edit', params)
+      await this.$api('goods.edit', params)
       this.$message.success('修改成功')
     },
     handleClose (formName) {

@@ -21,7 +21,7 @@
           <div class="goods">
             <img :src="scope.row.img" :title="scope.row.name" class="goods-img">
             <div class="goods-info">
-              <router-link to="/goods/details" class="goods-info__title">
+              <router-link :to="`/goods/details/${scope.row.id}`" class="goods-info__title">
                 {{ scope.row.name }}
               </router-link>
             </div>
@@ -107,7 +107,9 @@ export default {
         cancelButtonText: '取消',
         type: 'warning'
       }).then(() => {
-        this.delete().catch(e => {
+        this.delete().then(() => {
+          this.doQuery()
+        }).catch(e => {
           this.$message.error(e)
         })
       })

@@ -25,6 +25,7 @@ export default new Router({
     },
     {
       path: '/other/refresh',
+      alias: '/refresh',
       name: '刷新',
       component: require('@/views/other/refresh/index.vue').default
     }

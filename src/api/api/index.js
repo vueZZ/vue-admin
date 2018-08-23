@@ -21,7 +21,8 @@ const api = {
     }
   },
   // ——————api配置——————
-  ...goods
+  ...goods,
+  'user.info': { url: '/user/info', type: 'post', check: 'cehckResult' }
 }
 
 export default api

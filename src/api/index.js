@@ -1,7 +1,7 @@
 import server from './server'
 import api from './api'
 
-export default function (methods, data) {
+export default async function (methods, data) {
   let url = api[methods]
   let config
   if (url && url.type) {

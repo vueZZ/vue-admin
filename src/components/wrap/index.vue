@@ -12,7 +12,11 @@
         <h2>断网了</h2>
         <el-button @click="refresh">刷新</el-button>
       </div>
-      <router-view v-else class="web-container"></router-view>
+      <div v-else-if="dataError">
+        数据出错了
+        <el-button @click="doRefresh">刷新</el-button>
+      </div>
+      <router-view v-else class="web-container" @error="handleDataError"></router-view>
     </div>
   </section>
 </template>
@@ -20,6 +24,11 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
+  data () {
+    return {
+      dataError: false
+    }
+  },
   computed: {
     ...mapGetters([
       'netWork'
@@ -36,6 +45,12 @@ export default {
           message: '未连接到互联网'
         })
       }
+    },
+    doRefresh () {
+      this.$router.replace('/other/refresh')
+    },
+    handleDataError (val) {
+      this.dataError = val
     }
   }
 }
