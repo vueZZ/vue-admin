@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true
 
 const server = axios.create({
   timeout: 10000,
-  baseURL: '/api'
+  baseURL: '/admin'
 })
 
 const handleError = (code, msg) => {

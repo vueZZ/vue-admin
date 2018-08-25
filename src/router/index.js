@@ -1,18 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from '../store'
+
 import goods from './goods'
 import settings from './settings'
+import checkPermission from './permission'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
       component: require('@/components/layout/index.vue').default,
-      redirect: '/home',
+      redirect: '/login',
       children: [
         {
           path: '/home',
@@ -24,6 +27,11 @@ export default new Router({
       ]
     },
     {
+      path: '/login',
+      name: '登录',
+      component: require('@/views/login/index.vue').default
+    },
+    {
       path: '/other/refresh',
       alias: '/refresh',
       name: '刷新',
@@ -31,3 +39,5 @@ export default new Router({
     }
   ]
 })
+
+export default checkPermission(router, store)

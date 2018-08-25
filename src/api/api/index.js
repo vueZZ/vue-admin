@@ -22,6 +22,7 @@ const api = {
   },
   // ——————api配置——————
   ...goods,
+  'login': { url: '/user/info', type: 'post', check: 'cehckResult' },
   'user.info': { url: '/user/info', type: 'post', check: 'cehckResult' }
 }
 

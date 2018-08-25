@@ -1,49 +1,54 @@
 <template>
-  <div>
-    <section>
+  <tableLayout>
+    <section slot="form">
       <el-button @click="handleAdd" type="primary" size="small">添加</el-button>
+      <el-form label-width="80px" :model="query" ref="query" :inline="true" class="form" size="small">
+        <el-form-item label="商品名称" prop="name">
+          <el-input v-model="query.name" placeholder="商品名称"></el-input>
+        </el-form-item>
+        <el-form-item label="商品id" prop="name">
+          <el-input v-model="query.id" placeholder="商品id"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="doQuery" type="primary">查询</el-button>
+        </el-form-item>
+      </el-form>
     </section>
-    <el-form label-width="80px" :model="query" ref="query" :inline="true" class="form" size="small">
-      <el-form-item label="商品名称" prop="name">
-        <el-input v-model="query.name" placeholder="商品名称"></el-input>
-      </el-form-item>
-      <el-form-item label="商品id" prop="name">
-        <el-input v-model="query.id" placeholder="商品id"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button @click="doQuery" type="primary">查询</el-button>
-      </el-form-item>
-    </el-form>
-    <el-table :data="tableData" class="table" width="100%" :empty-text="tableText"
-      v-loading="tableLoading">
-      <el-table-column prop="name" label="商品">
-        <template slot-scope="scope">
-          <div class="goods">
-            <img :src="scope.row.img" :title="scope.row.name" class="goods-img">
-            <div class="goods-info">
-              <router-link :to="`/goods/details/${scope.row.id}`" class="goods-info__title">
-                {{ scope.row.name }}
-              </router-link>
+
+    <section slot="table">
+      <el-table :data="tableData" class="table" width="100%" :empty-text="tableText"
+        v-loading="tableLoading">
+        <el-table-column prop="name" label="商品">
+          <template slot-scope="scope">
+            <div class="goods">
+              <img :src="scope.row.img" :title="scope.row.name" class="goods-img">
+              <div class="goods-info">
+                <router-link :to="`/goods/details/${scope.row.id}`" class="goods-info__title">
+                  {{ scope.row.name }}
+                </router-link>
+              </div>
             </div>
-          </div>
-        </template>
-      </el-table-column>
-      <el-table-column prop="id" label="商品id">
-      </el-table-column>
-      <el-table-column prop="op" label="操作" fixed="right">
-        <template slot-scope="scope">
-          <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
-        </template>
-      </el-table-column>
-    </el-table>
+          </template>
+        </el-table-column>
+        <el-table-column prop="id" label="商品id">
+        </el-table-column>
+        <el-table-column prop="createTime" label="创建时间">
+          <template slot-scope="scope">
+            {{ scope.row.createTime | timestamp }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="op" label="操作" fixed="right">
+          <template slot-scope="scope">
+            <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
+            <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </section>
 
-    <div class="table-pagination">
-      <pagination :pageNo.sync="query.pageNo" :pageSize.sync="query.pageSize" :total="total" @doQuery="doQuery"></pagination>
-    </div>
-
+    <pagination slot="pagination" :pageNo.sync="query.pageNo" :pageSize.sync="query.pageSize" :total="total" @change="doQuery"></pagination>
     <goodsDialog ref="goodsDialog" @refresh="doQuery"></goodsDialog>
-  </div>
+  </tableLayout>
 </template>
 
 <script>
@@ -67,7 +72,6 @@ export default {
     }
   },
   created () {
-    console.log('created')
     this.doQuery()
   },
   activated () {
@@ -96,6 +100,7 @@ export default {
       this.total = this.tableData.length
     },
     handleAdd () {
+      console.log(this.$refs)
       this.$refs.goodsDialog.open()
     },
     handleEdit (row) {
@@ -145,12 +150,5 @@ export default {
   margin-top: 15px;
   margin-bottom: 20px;
   background-color: #f8f8f8;
-}
-.table{
-  &-pagination{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row-reverse;
-  }
 }
 </style>

@@ -27,11 +27,11 @@ export default {
   methods: {
     handleCurrentChange (val) {
       this.$emit('update:pageNo', val)
-      this.$emit('doQuery')
+      this.$emit('change')
     },
     handleSizeChange (val) {
       this.$emit('update:pageSize', val)
-      this.$emit('doQuery')
+      this.$emit('change')
     }
   }
 }

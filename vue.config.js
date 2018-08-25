@@ -20,9 +20,8 @@ module.exports = {
     // See https://github.com/vuejs/vue-cli/blob/dev/docs/cli-service.md#configuring-proxy
     // proxy: null, // string | Object
     proxy: {
-      '/api': {
-        target: 'http://yapi.demo.qunar.com/mock/16616/admin',
-        pathRewrite: {'^/api' : ''},
+      '/admin': {
+        target: 'http://yapi.demo.qunar.com/mock/16616/',
         changeOrigin: true
       }
     }

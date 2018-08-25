@@ -1,4 +1,4 @@
-// import utils from '@/lib/utils'
+import utils from '@/lib/utils'
 import filters from '@/lib/filters'
 import api from '@/api/index.js'
 
@@ -22,15 +22,14 @@ const components = [
 ]
 
 const install = function (Vue, opts = {}) {
-  Vue.use(filters)
-
   components.map(component => {
     Vue.component(component.name, component)
   })
 
   // Vue.prototype.$showImg = showImg
+  Vue.use(filters)
 
-  // Vue.prototype.$utils = utils
+  Vue.prototype.$utils = utils
   Vue.prototype.$api = api
 }
 
