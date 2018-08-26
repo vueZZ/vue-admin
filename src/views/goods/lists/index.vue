@@ -21,7 +21,8 @@
         <el-table-column prop="name" label="商品">
           <template slot-scope="scope">
             <div class="goods">
-              <img :src="scope.row.img" :title="scope.row.name" class="goods-img">
+              <z-img :src="scope.row.img" :title="scope.row.name" class="goods-img" @click="$preview($event.target.src)"></z-img>
+              <!-- <img :src="scope.row.img" :title="scope.row.name" class="goods-img" @click="$preview($event.target.src)"> -->
               <div class="goods-info">
                 <router-link :to="`/goods/details/${scope.row.id}`" class="goods-info__title">
                   {{ scope.row.name }}

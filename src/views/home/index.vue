@@ -1,6 +1,9 @@
 <template>
   <div>
     <h2>首页</h2>
+    <section>
+      <z-img src="www.baidu.com" @click="$preview($event.target.src)"></z-img>
+    </section>
   </div>
 </template>
 
