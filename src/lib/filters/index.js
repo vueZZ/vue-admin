@@ -2,7 +2,7 @@ import Vue from 'vue'
 
 export default {
   install () {
-    Vue.filter('showByLists', function (value, lists) { // 订单过滤器
+    Vue.filter('showByLists', function (value, lists) { // 状态列表过滤器
       if (!value || !lists) return ''
       let result = ''
       lists.some(item => {
@@ -11,6 +11,33 @@ export default {
         }
       })
       return result
+    })
+    Vue.filter('money', function (value, lists) { // 金钱过滤器
+      if (!value || !lists) return ''
+      let result = ''
+      lists.some(item => {
+        if (value === item.value) {
+          result = item.label
+        }
+      })
+      return result
+    })
+    Vue.filter('number', function (value) { // 数字过滤
+      if (!value && value !== 0) return
+      let n = Number(value)
+      if (n) {
+        if (n < 10000) {
+          return n
+        } else if (n < 100000000) {
+          let s = (n / 10000).toFixed(2)
+          return `${s}万`
+        } else {
+          let s = (n / 100000000).toFixed(2)
+          return `${s}亿`
+        }
+      } else {
+        return ''
+      }
     })
     Vue.filter('timestamp', function (value) { // 将时间搓格式为时间
       if (!value) return ''
