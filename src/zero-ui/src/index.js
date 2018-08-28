@@ -1,10 +1,12 @@
 import top from '../packages/top/index.js'
 import zImg from '../packages/img/index.js'
 import preview from '../packages/preview/index.js'
+import geetest from '../packages/geetest/index.js'
 
 const components = [
   top,
-  zImg
+  zImg,
+  geetest
 ]
 
 const install = function (Vue) {

@@ -24,9 +24,10 @@ export default {
   },
   methods: {
     reLoad () {
-      this.imgSrc = this.src
-      console.log(1)
-      this.$emit('reLoad')
+      if (!this.timer) {
+        this.imgSrc = this.src
+        this.$emit('reLoad')
+      }
     },
     handleLoad () {
       // this.imgSrc = this.src
