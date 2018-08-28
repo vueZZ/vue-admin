@@ -1,11 +1,13 @@
 import top from '../packages/top/index.js'
-import zImg from '../packages/img/index.js'
+import img from '../packages/img/index.js'
+import button from '../packages/button/index.js'
 import preview from '../packages/preview/index.js'
 import geetest from '../packages/geetest/index.js'
 
 const components = [
   top,
-  zImg,
+  img,
+  button,
   geetest
 ]
 

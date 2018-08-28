@@ -5,7 +5,7 @@
     </div>
     <div class="z-geetest__item">
       <div class="z-geetest__item__wrap">
-        <img :src="src" alt="" class="z-geetest__item__img" @click="handleChoice">
+        <img :src="src" alt="" class="z-geetest__item__img" @click="handleMark">
         <div v-for="(item, index) in marks" :key="index" @click="removeMark(index)"
           class="z-geetest__mark" :style="{ left: `${item.x}px`, top: `${item.y}px` }">
           {{ index + 1 }}
@@ -22,9 +22,11 @@
 <script>
 export default {
   name: 'zGeetest',
+  props: {
+    src: String
+  },
   data () {
     return {
-      src: 'https://resources.geetest.com/nerualpic/harley4/fa0c6c808df4f1b66fa2093892b778e9.jpg?challenge=4c90e9cbfdca65e0a848a5be5048d0f5',
       marks: []
     }
   },
@@ -62,7 +64,7 @@ export default {
         throw msg
       }
     },
-    handleChoice (event) {
+    handleMark (event) {
       if (this.marks.length < 9) {
         let obj = {
           x: event.layerX,

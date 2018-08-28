@@ -10,10 +10,10 @@
       <i class="iconfont icon-home"></i>概况
     </el-menu-item>
     <el-menu-item index="/goods">
-        <i class="iconfont icon-shangpin"></i>商品
+        <i class="iconfont icon-goods"></i>商品
     </el-menu-item>
     <el-menu-item index="/settings">
-      <i class="iconfont icon-shezhi"></i>设置
+      <i class="iconfont icon-settings"></i>设置
     </el-menu-item>
   </el-menu>
 </template>
