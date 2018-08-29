@@ -23,3 +23,7 @@ font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Micros
 ```
 
 ## 图标
+
+## 状态样式
+* is-disabled
+* is-loading

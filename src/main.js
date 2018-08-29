@@ -9,6 +9,7 @@ import zeroUI from './zero-ui/src/index'
 import common from '@/lib/index.js'
 
 import 'normalize.css'
+import 'element-ui/lib/theme-chalk/index.css'
 import '@/assets/font/iconfont.css'
 import '@/styles/index.scss'
 

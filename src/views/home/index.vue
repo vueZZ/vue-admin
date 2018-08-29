@@ -1,50 +1,72 @@
 <template>
   <div>
     <h2>首页</h2>
-    <!-- <section>
+    <!-- <block title="z-img">
       <z-img src="www.baidu.com" @click="$preview($event.target.src)"></z-img>
-    </section>
-    <hr> -->
-    {{ n | number }}
-    <input type="text" name="" id="" v-model="n">
-    <hr>
-    <!-- <z-geetest src="https://resources.geetest.com/nerualpic/harley4/fa0c6c808df4f1b66fa2093892b778e9.jpg?challenge=4c90e9cbfdca65e0a848a5be5048d0f5"></z-geetest>
-    <a href="/excel (38).xls" download="excel (38).xls" target="_blank">点击下载</a>
-    <hr> -->
-    <el-button>确定</el-button>
-    <el-button :loading="true">确定</el-button>
-    <z-button @click="hanlde">确定</z-button>
-    <z-button :loading="true" @click="hanlde">确定</z-button>
+    </block> -->
+    <!-- <block title="geetest">
+      <z-geetest src="https://resources.geetest.com/nerualpic/harley4/fa0c6c808df4f1b66fa2093892b778e9.jpg?challenge=4c90e9cbfdca65e0a848a5be5048d0f5"></z-geetest>
+      <a href="/excel (38).xls" download="excel (38).xls" target="_blank">点击下载</a>
+    </block> -->
+    <!-- <block title="按钮">
+      <div v-for="size in button.size" :key="size">
+        <div v-for="type in button.type" :key="type">
+          <z-button @click="handle" :type="type" :size="size" icon="icon-settings">确定</z-button>
+          <z-button @click="handle" :type="type" :size="size">确定</z-button>
+          <z-button @click="handle" :type="type" :size="size" :disabled="true">确定</z-button>
+          <z-button @click="handle" :type="type" :size="size" :loading="true">确定</z-button>
+          <span>element：</span>
+          <el-button @click="handle" :type="type" :size="size" :loading="true">确定</el-button>
+        </div>
+      </div>
+    </block> -->
+    <block title="input">
+      <div v-for="size in input.size" :key="size">
+        <div v-for="type in input.type" :key="type">
+          <z-input :type="type" :size="size"></z-input>
+          <span>element：</span>
+          <el-input :type="type" :size="size"></el-input>
+        </div>
+      </div>
+    </block>
   </div>
 </template>
 
 <script>
-import textr from '@/components/test/index.vue'
+import block from '@/components/block/index.vue'
 export default {
   components: {
-    textr
+    block
   },
   data () {
     return {
       n: '',
-      text: {}
+      text: {},
+      button: {
+        type: ['default', 'primary', 'success', 'info', 'wraning', 'danger'],
+        size: ['mini', 'small', 'medium', 'large']
+      },
+      input: {
+        type: ['text'],
+        size: ['mini', 'small', 'medium', 'large']
+      }
     }
   },
   methods: {
-    hanldeexport () {
+    handleExport () {
       let href = './index.vue'
       window.location.href = href
     },
-    hanlde () {
-      console.log(1)
+    handle (string) {
+      if (string || string === '') {
+        console.log(string)
+      } else {
+        console.log('handle')
+      }
+    },
+    change (e) {
+      console.log(e)
     }
   }
 }
 </script>
-
-<style lang="scss" scoped>
-hr{
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
-</style>
