@@ -13,8 +13,6 @@
     ]">
     <i class="iconfont icon-loading z-icon-loading" v-if="loading"></i>
     <i class="iconfont" :class="icon" v-if="icon && !loading"></i>
-    <!-- TODO:意义？ -->
-    <!-- <span v-if="$slots.default"><slot></slot></span> -->
     <slot></slot>
   </button>
 </template>
@@ -47,7 +45,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @mixin active-colors(
     $default,
     $hover,

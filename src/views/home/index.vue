@@ -20,14 +20,19 @@
         </div>
       </div>
     </block> -->
-    <block title="input">
+    <!-- <block title="input">
       <div v-for="size in input.size" :key="size">
         <div v-for="type in input.type" :key="type">
-          <z-input :type="type" :size="size"></z-input>
+          <z-input :type="type" :size="size" class="input dfsdfd"></z-input>
           <span>element：</span>
-          <el-input :type="type" :size="size"></el-input>
+          <el-input :type="type" :size="size" class="input" clearable=""></el-input>
         </div>
       </div>
+    </block> -->
+    <block title="form">
+      <z-form-item label="用户名" prop="r">
+        <z-input></z-input>
+      </z-form-item>
     </block>
   </div>
 </template>
@@ -70,3 +75,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.input{
+  width: 100px;
+}
+</style>

@@ -1,5 +1,7 @@
 import button from '../packages/button/index.js'
 import input from '../packages/input/index.js'
+import form from '../packages/form/index.js'
+import formItem from '../packages/form-item/index.js'
 
 import top from '../packages/top/index.js'
 import img from '../packages/img/index.js'
@@ -11,7 +13,10 @@ const components = [
   img,
   geetest,
   button,
-  input
+  // 333
+  input,
+  form,
+  formItem
 ]
 
 const install = function (Vue) {

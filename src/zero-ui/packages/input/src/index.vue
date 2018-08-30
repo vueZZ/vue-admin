@@ -83,21 +83,20 @@ export default {
     },
     clear () {
       this.$emit('input', '')
+      this.setCurrentValue('')
       this.$emit('clear')
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @mixin input-height(
     $height
   )
 {
-  .z-input__inner{
-    height: $height;
-    line-height: $height;
-  }
+  height: $height;
+  line-height: $height;
 }
 
 @mixin input(
@@ -108,19 +107,19 @@ export default {
   )
 {
   &--large{
-    font-size: $large + px;
+    font-size: $large;
     @include input-height(40px)
   }
   &--medium{
-    font-size: $medium + px;
+    font-size: $medium;
     @include input-height(36px)
   }
   &--small{
-    font-size: $small + px;
+    font-size: $small;
     @include input-height(32px)
   }
   &--mini{
-    font-size: $mini + px;
+    font-size: $mini;
     @include input-height(28px)
   }
 }
@@ -130,13 +129,15 @@ export default {
   display: inline-block;
   font-size: 14px;
   width: 100%;
+  height: 40px;
+  line-height: 40px;
   @include input(14px, 14px, 13px, 12px);
   &__inner{
     display: inline-block;
     padding: 0 15px;
     width: 100%;
-    height: 40px;
-    line-height: 40px;
+    height: inherit;
+    line-height: inherit;
     color: #606266;
     font-size: inherit;
     border-radius: 4px;
@@ -156,8 +157,9 @@ export default {
   &__icon{
     position: absolute;
     right: 0;
-    line-height: inherit;
     width: 20px;
+    line-height: inherit;
+    cursor: pointer;
   }
 }
 </style>
