@@ -30,9 +30,16 @@
       </div>
     </block> -->
     <block title="form">
-      <z-form-item label="用户名" prop="r">
-        <z-input></z-input>
-      </z-form-item>
+      <!-- <z-form ref="form" :model="data" label-width="80px" size="mini">
+        <z-form-item prop="name" label="姓名" required>
+          <z-input v-model="data.name"></z-input>
+        </z-form-item>
+      </z-form> -->
+      <el-form ref="form" :model="data" label-width="80px" size="samll">
+        <el-form-item prop="user.name" label="姓名" required>
+          <el-input v-model="data.user.name"></el-input>
+        </el-form-item>
+      </el-form>
     </block>
   </div>
 </template>
@@ -54,6 +61,9 @@ export default {
       input: {
         type: ['text'],
         size: ['mini', 'small', 'medium', 'large']
+      },
+      data: {
+        user: {}
       }
     }
   },

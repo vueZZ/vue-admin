@@ -1,3 +1,5 @@
+const path = require('path')
+
 module.exports = {
   css: {
     loaderOptions: {
@@ -8,6 +10,10 @@ module.exports = {
         data: `@import "@/styles/variables.scss";`
       }
     }
+  },
+  chainWebpack: config => {
+    config.resolve.alias
+      .set('zero-ui', path.resolve('src/zero-ui'))
   },
   devServer: {
     open: false,

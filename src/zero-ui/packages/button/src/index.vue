@@ -38,8 +38,8 @@ export default {
     loading: Boolean
   },
   methods: {
-    handleClick (evt) {
-      this.$emit('click', evt)
+    handleClick (event) {
+      this.$emit('click', event)
     }
   }
 }

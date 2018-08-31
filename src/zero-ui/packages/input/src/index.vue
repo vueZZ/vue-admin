@@ -25,8 +25,10 @@
 </template>
 
 <script>
+import emitter from 'zero-ui/src/mixins/emitter.js'
 export default {
   name: 'z-input',
+  mixins: [emitter],
   inheritAttrs: false,
   props: {
     value: [String, Number],
@@ -66,7 +68,10 @@ export default {
             let value = event.target.value
             vm.setCurrentValue(value)
             vm.$emit('input', value)
-            // vm.$emit('input', event.target.value)
+          },
+          blur: function (event) {
+            vm.$emit('blur', event)
+            this.dispatch('z-form-item', 'z.form.blur', [this.currentValue])
           }
         }
       )
@@ -80,6 +85,7 @@ export default {
   methods: {
     setCurrentValue (value) {
       this.currentValue = value
+      this.dispatch('z-form-item', 'z.form.change', [value])
     },
     clear () {
       this.$emit('input', '')
