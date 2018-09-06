@@ -10,6 +10,7 @@ const server = axios.create({
   baseURL: '/admin'
 })
 
+// TODO:api code错误处理
 const handleError = (code, msg) => {
   switch (code) {
     // 401: 未登录

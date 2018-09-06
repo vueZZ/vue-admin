@@ -72,7 +72,6 @@ export default {
       this.fileList.push(obj)
     },
     hanldeIsUpload (file) { // 图片格式限制
-      console.log(file)
       const isLtTp = file.type === 'image/png' || file.type === 'image/jpeg'
       const isLt2M = file.size / 1024 / 1024 < 2
       if (!isLtTp) {

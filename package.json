@@ -1,7 +1,17 @@
 {
   "name": "vue-admin",
   "version": "0.1.0",
-  "private": true,
+  "description": "vue admin",
+  "main": "lib/zero-ui.common.js",
+  "keywords": [
+    "vue-admin",
+    "vue",
+    "components",
+    "admin"
+  ],
+  "author": "vueZZ",
+  "license": "MIT",
+  "sideEffects": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

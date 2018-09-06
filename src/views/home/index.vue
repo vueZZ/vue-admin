@@ -41,6 +41,12 @@
         </el-form-item>
       </el-form>
     </block>
+    <block title="事件">
+      <transition-group name="flip-list" tag="div" mode='in-out'>
+        <li v-for="(n, index) in arr" :key="index">{{ n }}</li>
+      </transition-group>
+      <el-button @click="add">排序</el-button>
+    </block>
   </div>
 </template>
 
@@ -64,7 +70,8 @@ export default {
       },
       data: {
         user: {}
-      }
+      },
+      arr: [6, 1, 2, 3, 4, 5]
     }
   },
   methods: {
@@ -81,13 +88,47 @@ export default {
     },
     change (e) {
       console.log(e)
+    },
+    log (e) {
+      console.log(e)
+    },
+    sort () {
+      this.arr.sort()
+      // this.arr.splice(0, 1)
+      // this.arr.splice(this.arr.length, 1, 's')
+    },
+    add () {
+      this.arr.sort()
+      // this.arr.splice(this.randomIndex(), 0, 3)
+    },
+    randomIndex () {
+      return Math.floor(Math.random() * this.arr.length)
     }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .input{
   width: 100px;
+}
+.sort-arr-move {
+  transition: all 1s;
+}
+.flip-list-enter-active,.flip-list-leave-active {
+  transition: all 1s;
+}
+.flip-list-move {
+  transition: all 1s;
+}
+.flip-list-enter,.flip-list-leave-to {
+  opacity:0;
+  transform: translateX(50px);
+}
+/**
+ * 要让删除的元素先脱离文档流，旁边的元素才能过渡过来
+ */
+.flip-list-leave-active {
+  position:absolute;
 }
 </style>
