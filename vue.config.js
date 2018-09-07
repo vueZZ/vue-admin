@@ -17,7 +17,6 @@ module.exports = {
   },
   devServer: {
     open: false,
-    // host: 'seller.aizhuanshangcheng.com',
     port: 8080,
     https: false,
     hotOnly: true,

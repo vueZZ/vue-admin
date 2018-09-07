@@ -20,7 +20,10 @@ const router = new Router({
         {
           path: '/home',
           name: '首页',
-          component: require('@/views/home/index.vue').default
+          component: require('@/views/home/index.vue').default,
+          meta: {
+            icon: 'icon-home'
+          }
         },
         goods,
         settings

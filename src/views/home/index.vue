@@ -41,11 +41,17 @@
         </el-form-item>
       </el-form>
     </block>
-    <block title="事件">
+    <!-- <block title="事件">
       <transition-group name="flip-list" tag="div" mode='in-out'>
         <li v-for="(n, index) in arr" :key="index">{{ n }}</li>
       </transition-group>
       <el-button @click="add">排序</el-button>
+    </block> -->
+    <!-- <block title="防抖节流">
+      <el-button @click="debounce">防抖</el-button>
+    </block> -->
+    <block title="放大镜">
+      <z-magnifier></z-magnifier>
     </block>
   </div>
 </template>
@@ -103,6 +109,10 @@ export default {
     },
     randomIndex () {
       return Math.floor(Math.random() * this.arr.length)
+    },
+    debounce () {
+      console.log('start')
+      this.$utils.throttle(this.log, 2000)
     }
   }
 }

@@ -1,9 +1,13 @@
 export default {
   path: '/goods',
-  component: () => import('@/views/goods/index.vue'),
+  name: '商品',
   redirect: '/goods/lists',
+  meta: {
+    icon: 'icon-goods'
+  },
+  component: require('@/views/other/block/index.vue').default,
   children: [
-    { path: '/goods/lists', name: '商品列表', component: () => import('@/views/goods/lists/index.vue'), meta: { keepAlive: true } },
+    { path: '/goods/lists', name: '商品列表', component: () => import('@/views/goods/lists/index.vue'), meta: { keepAlive: true, show: true } },
     // {
     //   path: '/goods/details',
     //   name: '商品详情',

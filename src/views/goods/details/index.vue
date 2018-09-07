@@ -25,6 +25,11 @@ export default {
   created () {
     this.getData()
   },
+  watch: {
+    $route () {
+      this.getData()
+    }
+  },
   methods: {
     getData () {
       this.loading = true
@@ -51,8 +56,6 @@ export default {
       })
     },
     toPath () {
-      // let id = Number(this.id) + 1
-      console.log(this.id)
       this.$router.push({
         name: '商品详情',
         params: {

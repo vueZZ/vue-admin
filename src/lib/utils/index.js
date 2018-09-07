@@ -48,6 +48,30 @@ const utils = {
     } else {
       return false
     }
+  },
+  debounce (fn, delay) { // 防抖——将若干个函数调用合成为一次，并在给定时间过去之后仅被调用一次
+    let timer = null
+    let context = this
+    let args = arguments
+    clearTimeout(timer)
+    console.log(this)
+    timer = setTimeout(function () {
+      fn.apply(context, args)
+    }, delay)
+    // return function () {
+    // }
+  },
+  throttle (func, delay) { // 节流——限制每过多少秒就执行一次
+    let prev = Date.now()
+    return (function () {
+      const context = this
+      const args = arguments
+      const now = Date.now()
+      if ((now - prev) >= delay) {
+        func.apply(context, args)
+        prev = Date.now()
+      }
+    })()
   }
 }
 export default utils

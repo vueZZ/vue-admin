@@ -7,16 +7,19 @@ import top from '../packages/top/index.js'
 import img from '../packages/img/index.js'
 import preview from '../packages/preview/index.js'
 import geetest from '../packages/geetest/index.js'
+import magnifier from '../packages/magnifier/index.js'
 
 const components = [
+  // 通用组件
+  input,
+  form,
+  formItem,
+  // 特殊组件
   top,
   img,
   geetest,
   button,
-  // 333
-  input,
-  form,
-  formItem
+  magnifier
 ]
 
 const install = function (Vue) {

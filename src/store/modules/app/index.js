@@ -1,10 +1,14 @@
 export default {
   state: {
-    netWork: true // 联网情况
+    netWork: true, // 联网情况
+    sub: false
   },
   mutations: {
     set_netWork (state, value) {
       state.netWork = value
+    },
+    changeSub (state, value) {
+      state.sub = value
     }
   },
   actions: {
@@ -15,6 +19,9 @@ export default {
   getters: {
     netWork (state) {
       return state.netWork
+    },
+    sub (state) {
+      return state.sub
     }
   }
 }
