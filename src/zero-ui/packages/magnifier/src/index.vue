@@ -1,16 +1,13 @@
 <template>
-  <div class="z-magnifier">
+  <div class="z-magnifier" ref="layer">
     <img :src="img" alt="" @mouseover="mouseover" @mouseout="mouseout" @mousemove="mousemove">
-    <div class="z-magnifier-wrap" ref="magnifier"
+    <div class="z-magnifier-wrap"
       :style="[
         {
-          left: layer.x + 'px',
-          top: layer.y + 'px'
+          left: wrap.x + 'px',
+          top: wrap.y + 'px'
         }
       ]">
-    </div>
-    <div class="z-magnifier-wrap">
-
     </div>
   </div>
 </template>
@@ -20,6 +17,10 @@ export default {
   name: 'z-magnifier',
   data () {
     return {
+      wrap: {
+        x: 0,
+        y: 0
+      },
       layer: {
         x: 0,
         y: 0
@@ -37,11 +38,9 @@ export default {
 
     },
     mousemove (e) {
-      this.layer = {
-        x: e.offsetX - 80,
-        y: e.offsetY - 80
-      }
-      if (e.offsetX - this.layer.x > 50 || e.offsetY - this.layer.y > 50) {
+      this.wrap = {
+        x: e.clientX - 80,
+        y: e.clientY - 80
       }
     }
   }
@@ -50,12 +49,12 @@ export default {
 
 <style lang="scss">
 .z-magnifier{
-  position: relative;
+  // position: relative;
   img {
     position: relative;
   }
   &-wrap {
-    position: absolute;
+    position: fixed;
     width: 160px;
     height: 160px;
     // transform: translate(-50%, -50%);

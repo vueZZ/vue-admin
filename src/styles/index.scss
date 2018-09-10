@@ -4,9 +4,14 @@
 html{
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   font-size: 14px;
+  line-height: 1.15;
   font-variant-numeric: tabular-nums;
   color: $color;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 [v-cloak] {
   display: none;
 }

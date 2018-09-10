@@ -14,7 +14,7 @@ const router = new Router({
   routes: [
     {
       path: '/',
-      component: require('@/components/layout/index.vue').default,
+      component: require('@/layouts/default/index.vue').default,
       redirect: '/login',
       children: [
         {
