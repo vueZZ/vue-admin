@@ -50,8 +50,8 @@
     <!-- <block title="防抖节流">
       <el-button @click="debounce">防抖</el-button>
     </block> -->
-    <block title="放大镜">
-      <z-magnifier></z-magnifier>
+    <block title="放大镜" class="h1000">
+      <z-magnifier src="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536310639&di=8763dea58fa9b1300d78f93b19462b08&src=http://a3.topitme.com/0/82/57/11302368668ab57820o.jpg"></z-magnifier>
     </block>
   </div>
 </template>
@@ -140,5 +140,8 @@ export default {
  */
 .flip-list-leave-active {
   position:absolute;
+}
+.h1000{
+  height: 1000px;
 }
 </style>

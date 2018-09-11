@@ -1,47 +1,48 @@
 <template>
-  <div class="z-magnifier" ref="layer">
-    <img :src="img" alt="" @mouseover="mouseover" @mouseout="mouseout" @mousemove="mousemove">
-    <div class="z-magnifier-wrap"
-      :style="[
-        {
-          left: wrap.x + 'px',
-          top: wrap.y + 'px'
-        }
-      ]">
-    </div>
+  <div class="z-magnifier" ref="box" @mouseover="mouseover" @mouseout="mouseout" @mousemove="mousemove">
+    <img :src="src">
+    <div class="z-magnifier-cover"></div>
   </div>
 </template>
 
 <script>
+import Magnifier from './Magnifier'
 export default {
   name: 'z-magnifier',
-  data () {
-    return {
-      wrap: {
-        x: 0,
-        y: 0
-      },
-      layer: {
-        x: 0,
-        y: 0
-      },
-      img: 'https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1536310639&di=8763dea58fa9b1300d78f93b19462b08&src=http://a3.topitme.com/0/82/57/11302368668ab57820o.jpg'
+  props: {
+    src: String,
+    scale: {
+      type: Number,
+      default: 5
     }
   },
+  data () {
+    return {
+      magnifier: {} // 放大镜函数
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.init()
+    })
+  },
   methods: {
-    mouseover (e) {
-      // let left = e
-      // console.log(e)
-      // console.log(this.$refs.magnifier)
+    init () {
+      let box = this.$refs.box
+      let img = box.querySelector('img')
+      let cover = box.querySelector('.z-magnifier-cover')
+      cover.style.width = box.offsetWidth / this.scale + 'px'
+      cover.style.height = box.offsetHeight / this.scale + 'px'
+      this.magnifier = new Magnifier(img, cover, this.scale)
+    },
+    mouseover () {
+      this.magnifier.show()
     },
     mouseout () {
-
+      this.magnifier.hide()
     },
     mousemove (e) {
-      this.wrap = {
-        x: e.clientX - 80,
-        y: e.clientY - 80
-      }
+      this.magnifier.handle(e)
     }
   }
 }
@@ -49,17 +50,17 @@ export default {
 
 <style lang="scss">
 .z-magnifier{
-  // position: relative;
+  display: inline-block;
+  line-height: 0;
   img {
-    position: relative;
+    width: 200px;
+    height: 150px;
   }
-  &-wrap {
+  &-cover {
     position: fixed;
-    width: 160px;
-    height: 160px;
-    // transform: translate(-50%, -50%);
-    background-color: rgba(0,0,0,.5);
-    opacity: 0.3;
+    left: -100%;
+    top: -100%;
+    background-color: rgba(104, 70, 70, 0.5);
     cursor: move;
   }
 }
