@@ -1,8 +1,10 @@
 export default class Magnifier {
-  constructor (img, cover, scale) { // img:图片dom, cover: 放大镜dom
+  constructor (img, cover, scale, bigPic) { // img:图片dom, cover: 放大镜dom
     this.img = img
     this.cover = cover
     this.scale = scale
+    this.bigSrc = bigPic
+    this.scaleCanvas = 2
     this.initCanvas()
   }
   handle (event) { // 添加边界，校正放大镜的偏移
@@ -37,15 +39,16 @@ export default class Magnifier {
   drawCavans (x, y) { // 根据参数绘制放大图片
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
     let { left, top } = this.getOffset(this.img)
-    let startX = (x - left + document.documentElement.scrollLeft) * this.scale
-    let startY = (y - top + document.documentElement.scrollTop) * this.scale
-    this.ctx.drawImage(this.img, startX, startY, this.img.width, this.img.height, 0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
+    let startX = x - left + document.documentElement.scrollLeft
+    let startY = y - top + document.documentElement.scrollTop
+    this.ctx.drawImage(this.trueImg, startX * this.scaleX, startY * this.scaleY, this.trueImg.width * this.scaleW, this.trueImg.height * this.scaleH, 0, 0, this.ctx.canvas.width, this.ctx.canvas.height)
   }
   initCanvas () { // 生成放大canvas
     this.canvas = document.createElement('canvas')
     this.canvas.className = 'z-magnifier-canvas'
-    this.canvas.width = this.img.offsetWidth * this.scale
-    this.canvas.height = this.img.offsetHeight * this.scale
+    this.canvas.width = this.img.offsetWidth * this.scaleCanvas
+    this.canvas.height = this.img.offsetHeight * this.scaleCanvas
+    this.canvas.style.display = 'none'
     this.canvas.style.left = this.img.offsetLeft + this.img.offsetWidth + 20 + 'px'
     this.canvas.style.top = this.img.offsetTop + 'px'
     this.canvas.style.position = 'absolute'
@@ -55,6 +58,18 @@ export default class Magnifier {
     document.body.append(this.canvas)
     this.ctx = this.canvas.getContext('2d')
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+    this.generateImg()
+  }
+  generateImg () { // 生成放大图片
+    let src = this.bigSrc || this.img.src
+    this.trueImg = new Image()
+    this.trueImg.src = src
+    this.trueImg.onload = () => {
+      this.scaleX = this.trueImg.width / this.img.offsetWidth
+      this.scaleY = this.trueImg.height / this.img.offsetHeight
+      this.scaleW = (this.img.offsetWidth / this.scale) / this.img.offsetWidth
+      this.scaleH = (this.img.offsetHeight / this.scale) / this.img.offsetHeight
+    }
   }
   getXY (event) { // 获取放大镜当前偏移
     return {
